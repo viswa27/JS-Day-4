@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>What are function constructors?</h3>
+    <p>A function constructor is a way to create a new function object. In JavaScript, the Function() constructor creates Function objects. Calling the constructor directly can create functions dynamically, but suffers from security and similar (but far less significant) performance issues as eval(). However, unlike eval (which may have access to the local scope), the Function constructor creates functions which execute in the global scope only.</p><hr>
+    <h3>Explain call(), apply() and, bind() methods. Give an example of call(), apply(), bind()?</h3>
+    <pre>
+        In JavaScript, call(), apply(), and bind() are methods that allow you to change the value of this. They are used to set the value of this regardless of how a function is called.
+
+        call() method: The call() method calls a function with a given this value and arguments provided individually. For example:
+        const person = {
+          name: 'John Doe'
+        }
+        
+        function sayHello() {
+          console.log(`Hello ${this.name}`)
+        }
+        
+        sayHello.call(person) // Output: Hello John Doe
+        Copy
+        apply() method: The apply() method calls a function with a given this value and arguments provided as an array. For example:
+        const person = {
+          name: 'John Doe'
+        }
+        
+        function sayHello(greeting) {
+          console.log(`${greeting} ${this.name}`)
+        }
+        
+        sayHello.apply(person, ['Hi']) // Output: Hi John Doe
+        Copy
+        bind() method: The bind() method creates a new function that has the same body as the original function but with the this value set to the provided object. For example:
+        const person = {
+          name: 'John Doe'
+        }
+        
+        function sayHello() {
+          console.log(`Hello ${this.name}`)
+        }
+        
+        const sayHelloToPerson = sayHello.bind(person)
+        sayHelloToPerson() // Output: Hello John Doe
+    </pre><hr>
+    <h3>What is the purpose of async/await keywords?</h3>
+    <p>The async and await keywords in JavaScript are used for working with asynchronous code in a synchronous-like manner. The async keyword is used to declare a function as asynchronous, which means that it will return a promise. Inside an async function, the await keyword can be used to pause the execution of the function until a promise is resolved.
+    <br><br>The purpose of these keywords is to make it easier to write asynchronous code that looks like synchronous code. This makes it easier to read and understand the code, and also makes it easier to write error-free code.</p><hr>
+    <h3>Explain prototypes</h3>
+    <p>A prototype is an early sample, model, or release of a product that is used to test a concept or process. A prototype is typically used to evaluate a new design in order to increase analyst and system user accuracy. It is the stage between the formalization of an idea and its judgment.
+    <br><br>There are different types of prototypes, such as proof-of-principle prototypes, working prototypes, visual prototypes, user experience prototypes, functional prototypes, and paper prototypes.</p><hr>
+    <h3>What is prototype chain</h3>
+    <p>A prototype chain is a mechanism by which JavaScript objects inherit features from one another. Every object in JavaScript has a built-in property called its prototype, which is itself an object. The prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. Null has no prototype and it acts as the final link in this prototype chain.
+        <br><br>When trying to access a property or a method of an object, the JavaScript engine will first look for it in the object itself. If it can’t find it there, it will look for it in the prototype of the object. If it still can’t find it, it will look for it in the prototype’s prototype, and so on until either the property or method is found, or the end of the chain is reached.
+        <br><br>The prototype chain allows objects to share common properties and methods, and to override them if needed. It also enables inheritance and polymorphism in JavaScript.
+    </p><hr>
+    <h3>Give an example of inheritance using function constructor</h3>
+    <pre>
+      function Employee(name, age, gender, id) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.id = id;
+      };
+      
+      function Developer(name, age, gender, id, specialization) {
+        Employee.call(this, name, age, gender, id);
+        this.specialization = specialization;
+      }
+      
+      let Employee1 = new Employee("Suraj", 28, "Male", 564);
+      let Developer1 = new Developer("Karishma", 31, "Female", 345, "Frontend Developer");
+    </pre>
+    <p>In this example, we create an Employee constructor function. A new Developer constructor function is created that will inherit the basic properties of Employee as well as will contain some new properties. The Developer constructor function inherits the properties of the Employee constructor function along with a new parameter specialization. Here, we called the Employee function using the call() function to pass the required parameters to the Employee constructor function.</p><hr>
+</body>
+</html>
